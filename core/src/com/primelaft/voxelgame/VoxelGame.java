@@ -20,7 +20,6 @@ public class VoxelGame implements ApplicationListener {
 
 		modelBatch = new ModelBatch();
 
-
 		//****************************************
 		// Initialize player camera
 		//****************************************
@@ -30,8 +29,7 @@ public class VoxelGame implements ApplicationListener {
 		// Initialize player controller
 		//****************************************
 		Player.InitializeController();
-
-
+		
 		//****************************************
 		// Generate game terrain
 		//****************************************
