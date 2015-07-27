@@ -56,6 +56,7 @@ public class VoxelGame implements ApplicationListener {
 		//****************************************
 		Terrain.RenderTerrain();
 
+
 		modelBatch.end();
 	}
 
