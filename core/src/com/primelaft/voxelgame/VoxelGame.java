@@ -29,7 +29,7 @@ public class VoxelGame implements ApplicationListener {
 		// Initialize player controller
 		//****************************************
 		Player.InitializeController();
-		
+
 		//****************************************
 		// Generate game terrain
 		//****************************************
