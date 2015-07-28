@@ -38,10 +38,10 @@ public class Terrain {
         FileHandle imageFileHandle = Gdx.files.internal("grass.jpg");
 
         ModelBuilder modelBuilder = new ModelBuilder();
-		for(int x = 0; x < Blocks.length; x++){
-			for(int z = 0; z < Blocks.length; z++)
+        for(int x = 0; x < Blocks.length; x++){
+            for(int y = 0; y < Blocks.length; y++)
             {
-                for(int y = 0; y < Blocks.length; y++)
+                for(int z = 0; z < Blocks.length; z++)
                 {
                     Blocks[z][x][y] = modelBuilder.createBox(1f, 1f, 1f, new Material(),
                             VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
@@ -50,19 +50,19 @@ public class Terrain {
 
                     BlocksInstances[z][x][y].transform.setToTranslation(x * 2, y * 2, z * 2);
                 }
-			}
-		}
+            }
+        }
     }
     //**************************************************
     // Real time render terrain
     //**************************************************
     public void RenderTerrain()
     {
-        for(int z = 0; z < BlocksInstances.length; z++)
+        for(int x = 0; x < BlocksInstances.length; x++)
         {
-            for(int x = 0; x < BlocksInstances.length; x++)
+            for(int y = 0; y < BlocksInstances.length; y++)
             {
-                for(int y = 0; y < BlocksInstances.length; y++)
+                for(int z = 0; z < BlocksInstances.length; z++)
                 {
                     Vector3 vec = new Vector3();
                     if(Player.cam.position.x + 200 >= BlocksInstances[z][x][y].transform.getTranslation(vec).x &&
@@ -70,12 +70,13 @@ public class Terrain {
                             Player.cam.position.z + 200 >= BlocksInstances[z][x][y].transform.getTranslation(vec).z &&
                             Player.cam.position.z - 200 <= BlocksInstances[z][x][y].transform.getTranslation(vec).z &&
                             Player.cam.position.y + 50 >= BlocksInstances[z][x][y].transform.getTranslation(vec).y &&
-                            Player.cam.position.y - 50 <= BlocksInstances[z][x][y].transform.getTranslation(vec).y)
-                    {
+                            Player.cam.position.y - 50 <= BlocksInstances[z][x][y].transform.getTranslation(vec).y) {
                         VoxelGame.modelBatch.render(BlocksInstances[z][x][y], environment);
+
                     }
                 }
             }
         }
+
     }
 }
