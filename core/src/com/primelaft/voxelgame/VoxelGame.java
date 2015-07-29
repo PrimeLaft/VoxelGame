@@ -5,58 +5,28 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g3d.*;
+import com.primelaft.voxelgame.world.*;
+import com.primelaft.voxelgame.player.*;
 
 public class VoxelGame implements ApplicationListener {
 	public static ModelBatch modelBatch;
-	public Terrain Terrain = new Terrain();
-	public Player Player = new Player();
+	World world = new World();
+	Player player = new Player();
 
 	@Override
 	public void create() {
-		//**************************************************
-		// Initialize game world
-		//**************************************************
-		Terrain.InitializeWorld();
-
 		modelBatch = new ModelBatch();
 
-		//**************************************************
-		// Initialize player camera
-		//**************************************************
-		Player.InitializeCamera();
-
-		//**************************************************
-		// Initialize player controller
-		//**************************************************
-		Player.InitializeController();
-
-		//**************************************************
-		// Generate game terrain
-		//**************************************************
-		Terrain.GenerateTerrain();
+		world.createWorld();
+		player.initializePlayer();
 	}
 
 	@Override
 	public void render() {
-		//**************************************************
-		// Rendering player camera
-		//**************************************************
-		Player.RenderCamera();
-
 		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-
-		//**************************************************
-		// Render player model batch
-		//**************************************************
-		Player.CameraBatch(modelBatch);
-
-		//**************************************************
-		// Render game world
-		//**************************************************
-		Terrain.RenderTerrain();
-
-
+		world.renderTerrain();
+		player.updateCamera();
 		modelBatch.end();
 	}
 
